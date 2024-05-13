@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 /**
  * (UmsRolePermissionRelation)表控制层
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:30:47
  */
 @RestController

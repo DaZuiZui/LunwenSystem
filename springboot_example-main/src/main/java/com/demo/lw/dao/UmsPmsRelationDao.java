@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * (UmsPmsRelation)表数据库访问层
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:27:42
  */
 @Mapper

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * (AmsPaper)表数据库访问层
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:07:07
  */
 @Mapper

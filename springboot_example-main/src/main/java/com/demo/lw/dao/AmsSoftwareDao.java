@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  * (AmsSoftware)表数据库访问层
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:12:43
  */
 @Mapper

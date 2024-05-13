@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 /**
  * (AmsMaterial)表控制层
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 11:19:31
  */
 @RestController
