@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.lw.dao.PmsResearchDao">
+
+    <resultMap type="com.demo.lw.entity.PmsResearch" id="PmsResearchMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="contractSource" column="contract_source" jdbcType="VARCHAR"/>
+        <result property="contractNumber" column="contract_number" jdbcType="VARCHAR"/>
+        <result property="rank" column="rank" jdbcType="VARCHAR"/>
+        <result property="receivedFunds" column="received_funds" jdbcType="VARCHAR"/>
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
+        <result property="deadline" column="deadline" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="authorId" column="author_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="PmsResearchMap">
+        select
+          id, name, contract_source, contract_number, rank, received_funds, start_time, deadline, status, remark, author_id
+        from pms_research
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="PmsResearchMap">
+        select
+          id, name, contract_source, contract_number, rank, received_funds, start_time, deadline, status, remark, author_id
+        from pms_research
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="contractSource != null and contractSource != ''">
+                and contract_source = #{contractSource}
+            </if>
+            <if test="contractNumber != null and contractNumber != ''">
+                and contract_number = #{contractNumber}
+            </if>
+            <if test="rank != null and rank != ''">
+                and rank = #{rank}
+            </if>
+            <if test="receivedFunds != null and receivedFunds != ''">
+                and received_funds = #{receivedFunds}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="deadline != null">
+                and deadline = #{deadline}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="authorId != null">
+                and author_id = #{authorId}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from pms_research
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="contractSource != null and contractSource != ''">
+                and contract_source = #{contractSource}
+            </if>
+            <if test="contractNumber != null and contractNumber != ''">
+                and contract_number = #{contractNumber}
+            </if>
+            <if test="rank != null and rank != ''">
+                and rank = #{rank}
+            </if>
+            <if test="receivedFunds != null and receivedFunds != ''">
+                and received_funds = #{receivedFunds}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="deadline != null">
+                and deadline = #{deadline}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="authorId != null">
+                and author_id = #{authorId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into pms_research(name, contract_source, contract_number, rank, received_funds, start_time, deadline, status, remark, author_id)
+        values (#{name}, #{contractSource}, #{contractNumber}, #{rank}, #{receivedFunds}, #{startTime}, #{deadline}, #{status}, #{remark}, #{authorId})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into pms_research(name, contract_source, contract_number, rank, received_funds, start_time, deadline, status, remark, author_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.name}, #{entity.contractSource}, #{entity.contractNumber}, #{entity.rank}, #{entity.receivedFunds}, #{entity.startTime}, #{entity.deadline}, #{entity.status}, #{entity.remark}, #{entity.authorId})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into pms_research(name, contract_source, contract_number, rank, received_funds, start_time, deadline, status, remark, author_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.contractSource}, #{entity.contractNumber}, #{entity.rank}, #{entity.receivedFunds}, #{entity.startTime}, #{entity.deadline}, #{entity.status}, #{entity.remark}, #{entity.authorId})
+        </foreach>
+        on duplicate key update
+        name = values(name),
+        contract_source = values(contract_source),
+        contract_number = values(contract_number),
+        rank = values(rank),
+        received_funds = values(received_funds),
+        start_time = values(start_time),
+        deadline = values(deadline),
+        status = values(status),
+        remark = values(remark),
+        author_id = values(author_id)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update pms_research
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="contractSource != null and contractSource != ''">
+                contract_source = #{contractSource},
+            </if>
+            <if test="contractNumber != null and contractNumber != ''">
+                contract_number = #{contractNumber},
+            </if>
+            <if test="rank != null and rank != ''">
+                rank = #{rank},
+            </if>
+            <if test="receivedFunds != null and receivedFunds != ''">
+                received_funds = #{receivedFunds},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="deadline != null">
+                deadline = #{deadline},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+            <if test="authorId != null">
+                author_id = #{authorId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from pms_research where id = #{id}
+    </delete>
+
+</mapper>
+
