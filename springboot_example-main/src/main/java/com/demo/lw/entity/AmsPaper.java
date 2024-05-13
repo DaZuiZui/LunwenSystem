@@ -92,12 +92,40 @@ public class AmsPaper implements Serializable {
     /**
      * 摘要
      */
-    private String abstract;
+    private String abstract1;
+
     /**
      * 备注
      */
     private String remark;
 
+    @Override
+    public String toString() {
+        return "AmsPaper{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", type='" + type + '\'' +
+                ", area='" + area + '\'' +
+                ", rank='" + rank + '\'' +
+                ", correspondingAuthor=" + correspondingAuthor +
+                ", name='" + name + '\'' +
+                ", index='" + index + '\'' +
+                ", publicationTime=" + publicationTime +
+                ", doiNumber='" + doiNumber + '\'' +
+                ", referenceCount='" + referenceCount + '\'' +
+                ", keyword='" + keyword + '\'' +
+                ", authorInfo='" + authorInfo + '\'' +
+                ", startingAndEndingPageNumber=" + startingAndEndingPageNumber +
+                ", projectId=" + projectId +
+                ", impactFactor='" + impactFactor + '\'' +
+                ", volumeNumber='" + volumeNumber + '\'' +
+                ", issue='" + issue + '\'' +
+                ", issnNumber='" + issnNumber + '\'' +
+                ", cnNumber='" + cnNumber + '\'' +
+                ", abstract1='" + abstract1 + '\'' +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 
     public Integer getId() {
         return id;
@@ -259,12 +287,12 @@ public class AmsPaper implements Serializable {
         this.cnNumber = cnNumber;
     }
 
-    public String getAbstract() {
-        return abstract;
+    public String getAbstract1() {
+        return abstract1;
     }
 
-    public void setAbstract(String abstract) {
-        this.abstract = abstract;
+    public void setAbstract1(String abstract1) {
+        this.abstract1 = abstract1;
     }
 
     public String getRemark() {
@@ -275,5 +303,32 @@ public class AmsPaper implements Serializable {
         this.remark = remark;
     }
 
+    public AmsPaper() {
+    }
+
+    public AmsPaper(Integer id, String title, String type, String area, String rank, Integer correspondingAuthor, String name, String index, Date publicationTime, String doiNumber, String referenceCount, String keyword, String authorInfo, Integer startingAndEndingPageNumber, Integer projectId, String impactFactor, String volumeNumber, String issue, String issnNumber, String cnNumber, String abstract1, String remark) {
+        this.id = id;
+        this.title = title;
+        this.type = type;
+        this.area = area;
+        this.rank = rank;
+        this.correspondingAuthor = correspondingAuthor;
+        this.name = name;
+        this.index = index;
+        this.publicationTime = publicationTime;
+        this.doiNumber = doiNumber;
+        this.referenceCount = referenceCount;
+        this.keyword = keyword;
+        this.authorInfo = authorInfo;
+        this.startingAndEndingPageNumber = startingAndEndingPageNumber;
+        this.projectId = projectId;
+        this.impactFactor = impactFactor;
+        this.volumeNumber = volumeNumber;
+        this.issue = issue;
+        this.issnNumber = issnNumber;
+        this.cnNumber = cnNumber;
+        this.abstract1 = abstract1;
+        this.remark = remark;
+    }
 }
 

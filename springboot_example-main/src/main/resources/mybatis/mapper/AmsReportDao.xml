@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.lw.dao.AmsReportDao">
+
+    <resultMap type="com.demo.lw.entity.AmsReport" id="AmsReportMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="event" column="event" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="level" column="level" jdbcType="VARCHAR"/>
+        <result property="time" column="time" jdbcType="TIMESTAMP"/>
+        <result property="column" column="column" jdbcType="VARCHAR"/>
+        <result property="link" column="link" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="projectId" column="project_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AmsReportMap">
+        select
+            id, event, name, level, time, column, link, remark, project_id
+        from ams_report
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AmsReportMap">
+        select
+        id, event, name, level, time, column, link, remark, project_id
+        from ams_report
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="event != null and event != ''">
+                and event = #{event}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="level != null and level != ''">
+                and level = #{level}
+            </if>
+            <if test="time != null">
+                and time = #{time}
+            </if>
+            <if test="column != null and column != ''">
+                and column = #{column}
+            </if>
+            <if test="link != null and link != ''">
+                and link = #{link}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="projectId != null">
+                and project_id = #{projectId}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from ams_report
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="event != null and event != ''">
+                and event = #{event}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="level != null and level != ''">
+                and level = #{level}
+            </if>
+            <if test="time != null">
+                and time = #{time}
+            </if>
+            <if test="column != null and column != ''">
+                and column = #{column}
+            </if>
+            <if test="link != null and link != ''">
+                and link = #{link}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="projectId != null">
+                and project_id = #{projectId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into ams_report(event, name, level, time, column, link, remark, project_id)
+        values (#{event}, #{name}, #{level}, #{time}, #{column}, #{link}, #{remark}, #{projectId})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into ams_report(event, name, level, time, column, link, remark, project_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.event}, #{entity.name}, #{entity.level}, #{entity.time}, #{entity.column}, #{entity.link}, #{entity.remark}, #{entity.projectId})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into ams_report(event, name, level, time, column, link, remark, project_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.event}, #{entity.name}, #{entity.level}, #{entity.time}, #{entity.column}, #{entity.link}, #{entity.remark}, #{entity.projectId})
+        </foreach>
+        on duplicate key update
+        event = values(event),
+        name = values(name),
+        level = values(level),
+        time = values(time),
+        column = values(column),
+        link = values(link),
+        remark = values(remark),
+        project_id = values(project_id)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update ams_report
+        <set>
+            <if test="event != null and event != ''">
+                event = #{event},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="level != null and level != ''">
+                level = #{level},
+            </if>
+            <if test="time != null">
+                time = #{time},
+            </if>
+            <if test="column != null and column != ''">
+                column = #{column},
+            </if>
+            <if test="link != null and link != ''">
+                link = #{link},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from ams_report where id = #{id}
+    </delete>
+
+</mapper>
+
