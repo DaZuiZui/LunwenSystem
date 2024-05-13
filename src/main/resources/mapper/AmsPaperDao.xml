@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.lw.dao.AmsPaperDao">
+
+    <resultMap type="com.demo.lw.entity.AmsPaper" id="AmsPaperMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="area" column="area" jdbcType="VARCHAR"/>
+        <result property="rank" column="rank" jdbcType="VARCHAR"/>
+        <result property="correspondingAuthor" column="corresponding_author" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="index" column="index" jdbcType="VARCHAR"/>
+        <result property="publicationTime" column="publication_time" jdbcType="TIMESTAMP"/>
+        <result property="doiNumber" column="DOI_number" jdbcType="VARCHAR"/>
+        <result property="referenceCount" column="reference_count" jdbcType="VARCHAR"/>
+        <result property="keyword" column="keyword" jdbcType="VARCHAR"/>
+        <result property="authorInfo" column="author_info" jdbcType="VARCHAR"/>
+        <result property="startingAndEndingPageNumber" column="starting_and_ending_page_number" jdbcType="INTEGER"/>
+        <result property="projectId" column="project_id" jdbcType="INTEGER"/>
+        <result property="impactFactor" column="impact_factor" jdbcType="VARCHAR"/>
+        <result property="volumeNumber" column="volume_number" jdbcType="VARCHAR"/>
+        <result property="issue" column="issue" jdbcType="VARCHAR"/>
+        <result property="issnNumber" column="ISSN_number" jdbcType="VARCHAR"/>
+        <result property="cnNumber" column="CN_number" jdbcType="VARCHAR"/>
+        <result property="abstract" column="abstract" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AmsPaperMap">
+        select
+          id, title, type, area, rank, corresponding_author, name, index, publication_time, DOI_number, reference_count, keyword, author_info, starting_and_ending_page_number, project_id, impact_factor, volume_number, issue, ISSN_number, CN_number, abstract, remark
+        from ams_paper
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AmsPaperMap">
+        select
+          id, title, type, area, rank, corresponding_author, name, index, publication_time, DOI_number, reference_count, keyword, author_info, starting_and_ending_page_number, project_id, impact_factor, volume_number, issue, ISSN_number, CN_number, abstract, remark
+        from ams_paper
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="title != null and title != ''">
+                and title = #{title}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="area != null and area != ''">
+                and area = #{area}
+            </if>
+            <if test="rank != null and rank != ''">
+                and rank = #{rank}
+            </if>
+            <if test="correspondingAuthor != null">
+                and corresponding_author = #{correspondingAuthor}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="index != null and index != ''">
+                and index = #{index}
+            </if>
+            <if test="publicationTime != null">
+                and publication_time = #{publicationTime}
+            </if>
+            <if test="doiNumber != null and doiNumber != ''">
+                and DOI_number = #{doiNumber}
+            </if>
+            <if test="referenceCount != null and referenceCount != ''">
+                and reference_count = #{referenceCount}
+            </if>
+            <if test="keyword != null and keyword != ''">
+                and keyword = #{keyword}
+            </if>
+            <if test="authorInfo != null and authorInfo != ''">
+                and author_info = #{authorInfo}
+            </if>
+            <if test="startingAndEndingPageNumber != null">
+                and starting_and_ending_page_number = #{startingAndEndingPageNumber}
+            </if>
+            <if test="projectId != null">
+                and project_id = #{projectId}
+            </if>
+            <if test="impactFactor != null and impactFactor != ''">
+                and impact_factor = #{impactFactor}
+            </if>
+            <if test="volumeNumber != null and volumeNumber != ''">
+                and volume_number = #{volumeNumber}
+            </if>
+            <if test="issue != null and issue != ''">
+                and issue = #{issue}
+            </if>
+            <if test="issnNumber != null and issnNumber != ''">
+                and ISSN_number = #{issnNumber}
+            </if>
+            <if test="cnNumber != null and cnNumber != ''">
+                and CN_number = #{cnNumber}
+            </if>
+            <if test="abstract != null and abstract != ''">
+                and abstract = #{abstract}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from ams_paper
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="title != null and title != ''">
+                and title = #{title}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="area != null and area != ''">
+                and area = #{area}
+            </if>
+            <if test="rank != null and rank != ''">
+                and rank = #{rank}
+            </if>
+            <if test="correspondingAuthor != null">
+                and corresponding_author = #{correspondingAuthor}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="index != null and index != ''">
+                and index = #{index}
+            </if>
+            <if test="publicationTime != null">
+                and publication_time = #{publicationTime}
+            </if>
+            <if test="doiNumber != null and doiNumber != ''">
+                and DOI_number = #{doiNumber}
+            </if>
+            <if test="referenceCount != null and referenceCount != ''">
+                and reference_count = #{referenceCount}
+            </if>
+            <if test="keyword != null and keyword != ''">
+                and keyword = #{keyword}
+            </if>
+            <if test="authorInfo != null and authorInfo != ''">
+                and author_info = #{authorInfo}
+            </if>
+            <if test="startingAndEndingPageNumber != null">
+                and starting_and_ending_page_number = #{startingAndEndingPageNumber}
+            </if>
+            <if test="projectId != null">
+                and project_id = #{projectId}
+            </if>
+            <if test="impactFactor != null and impactFactor != ''">
+                and impact_factor = #{impactFactor}
+            </if>
+            <if test="volumeNumber != null and volumeNumber != ''">
+                and volume_number = #{volumeNumber}
+            </if>
+            <if test="issue != null and issue != ''">
+                and issue = #{issue}
+            </if>
+            <if test="issnNumber != null and issnNumber != ''">
+                and ISSN_number = #{issnNumber}
+            </if>
+            <if test="cnNumber != null and cnNumber != ''">
+                and CN_number = #{cnNumber}
+            </if>
+            <if test="abstract != null and abstract != ''">
+                and abstract = #{abstract}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into ams_paper(title, type, area, rank, corresponding_author, name, index, publication_time, DOI_number, reference_count, keyword, author_info, starting_and_ending_page_number, project_id, impact_factor, volume_number, issue, ISSN_number, CN_number, abstract, remark)
+        values (#{title}, #{type}, #{area}, #{rank}, #{correspondingAuthor}, #{name}, #{index}, #{publicationTime}, #{doiNumber}, #{referenceCount}, #{keyword}, #{authorInfo}, #{startingAndEndingPageNumber}, #{projectId}, #{impactFactor}, #{volumeNumber}, #{issue}, #{issnNumber}, #{cnNumber}, #{abstract}, #{remark})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into ams_paper(title, type, area, rank, corresponding_author, name, index, publication_time, DOI_number, reference_count, keyword, author_info, starting_and_ending_page_number, project_id, impact_factor, volume_number, issue, ISSN_number, CN_number, abstract, remark)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.title}, #{entity.type}, #{entity.area}, #{entity.rank}, #{entity.correspondingAuthor}, #{entity.name}, #{entity.index}, #{entity.publicationTime}, #{entity.doiNumber}, #{entity.referenceCount}, #{entity.keyword}, #{entity.authorInfo}, #{entity.startingAndEndingPageNumber}, #{entity.projectId}, #{entity.impactFactor}, #{entity.volumeNumber}, #{entity.issue}, #{entity.issnNumber}, #{entity.cnNumber}, #{entity.abstract}, #{entity.remark})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into ams_paper(title, type, area, rank, corresponding_author, name, index, publication_time, DOI_number, reference_count, keyword, author_info, starting_and_ending_page_number, project_id, impact_factor, volume_number, issue, ISSN_number, CN_number, abstract, remark)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.title}, #{entity.type}, #{entity.area}, #{entity.rank}, #{entity.correspondingAuthor}, #{entity.name}, #{entity.index}, #{entity.publicationTime}, #{entity.doiNumber}, #{entity.referenceCount}, #{entity.keyword}, #{entity.authorInfo}, #{entity.startingAndEndingPageNumber}, #{entity.projectId}, #{entity.impactFactor}, #{entity.volumeNumber}, #{entity.issue}, #{entity.issnNumber}, #{entity.cnNumber}, #{entity.abstract}, #{entity.remark})
+        </foreach>
+        on duplicate key update
+        title = values(title),
+        type = values(type),
+        area = values(area),
+        rank = values(rank),
+        corresponding_author = values(corresponding_author),
+        name = values(name),
+        index = values(index),
+        publication_time = values(publication_time),
+        DOI_number = values(DOI_number),
+        reference_count = values(reference_count),
+        keyword = values(keyword),
+        author_info = values(author_info),
+        starting_and_ending_page_number = values(starting_and_ending_page_number),
+        project_id = values(project_id),
+        impact_factor = values(impact_factor),
+        volume_number = values(volume_number),
+        issue = values(issue),
+        ISSN_number = values(ISSN_number),
+        CN_number = values(CN_number),
+        abstract = values(abstract),
+        remark = values(remark)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update ams_paper
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="area != null and area != ''">
+                area = #{area},
+            </if>
+            <if test="rank != null and rank != ''">
+                rank = #{rank},
+            </if>
+            <if test="correspondingAuthor != null">
+                corresponding_author = #{correspondingAuthor},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="index != null and index != ''">
+                index = #{index},
+            </if>
+            <if test="publicationTime != null">
+                publication_time = #{publicationTime},
+            </if>
+            <if test="doiNumber != null and doiNumber != ''">
+                DOI_number = #{doiNumber},
+            </if>
+            <if test="referenceCount != null and referenceCount != ''">
+                reference_count = #{referenceCount},
+            </if>
+            <if test="keyword != null and keyword != ''">
+                keyword = #{keyword},
+            </if>
+            <if test="authorInfo != null and authorInfo != ''">
+                author_info = #{authorInfo},
+            </if>
+            <if test="startingAndEndingPageNumber != null">
+                starting_and_ending_page_number = #{startingAndEndingPageNumber},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId},
+            </if>
+            <if test="impactFactor != null and impactFactor != ''">
+                impact_factor = #{impactFactor},
+            </if>
+            <if test="volumeNumber != null and volumeNumber != ''">
+                volume_number = #{volumeNumber},
+            </if>
+            <if test="issue != null and issue != ''">
+                issue = #{issue},
+            </if>
+            <if test="issnNumber != null and issnNumber != ''">
+                ISSN_number = #{issnNumber},
+            </if>
+            <if test="cnNumber != null and cnNumber != ''">
+                CN_number = #{cnNumber},
+            </if>
+            <if test="abstract != null and abstract != ''">
+                abstract = #{abstract},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from ams_paper where id = #{id}
+    </delete>
+
+</mapper>
+
