@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gsxy.filesystemserver.dao.AmsBookDao">
+
+    <resultMap type="com.gsxy.filesystemserver.entity.AmsBook" id="AmsBookMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="publicationNumber" column="publication_number" jdbcType="VARCHAR"/>
+        <result property="identity" column="identity" jdbcType="VARCHAR"/>
+        <result property="rank" column="rank" jdbcType="VARCHAR"/>
+        <result property="publishHouse" column="publish_house" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="wordCount" column="word_count" jdbcType="VARCHAR"/>
+        <result property="publicationLocation" column="publication_location" jdbcType="VARCHAR"/>
+        <result property="publicationTime" column="publication_time" jdbcType="TIMESTAMP"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="projectId" column="project_id" jdbcType="INTEGER"/>
+        <result property="authorId" column="author_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AmsBookMap">
+        select
+          id, name, publication_number, identity, rank, publish_house, type, word_count, publication_location, publication_time, remark, project_id, author_id
+        from ams_book
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AmsBookMap">
+        select
+          id, name, publication_number, identity, rank, publish_house, type, word_count, publication_location, publication_time, remark, project_id, author_id
+        from ams_book
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="publicationNumber != null and publicationNumber != ''">
+                and publication_number = #{publicationNumber}
+            </if>
+            <if test="identity != null and identity != ''">
+                and identity = #{identity}
+            </if>
+            <if test="rank != null and rank != ''">
+                and rank = #{rank}
+            </if>
+            <if test="publishHouse != null and publishHouse != ''">
+                and publish_house = #{publishHouse}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="wordCount != null and wordCount != ''">
+                and word_count = #{wordCount}
+            </if>
+            <if test="publicationLocation != null and publicationLocation != ''">
+                and publication_location = #{publicationLocation}
+            </if>
+            <if test="publicationTime != null">
+                and publication_time = #{publicationTime}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="projectId != null">
+                and project_id = #{projectId}
+            </if>
+            <if test="authorId != null">
+                and author_id = #{authorId}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from ams_book
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="publicationNumber != null and publicationNumber != ''">
+                and publication_number = #{publicationNumber}
+            </if>
+            <if test="identity != null and identity != ''">
+                and identity = #{identity}
+            </if>
+            <if test="rank != null and rank != ''">
+                and rank = #{rank}
+            </if>
+            <if test="publishHouse != null and publishHouse != ''">
+                and publish_house = #{publishHouse}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="wordCount != null and wordCount != ''">
+                and word_count = #{wordCount}
+            </if>
+            <if test="publicationLocation != null and publicationLocation != ''">
+                and publication_location = #{publicationLocation}
+            </if>
+            <if test="publicationTime != null">
+                and publication_time = #{publicationTime}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="projectId != null">
+                and project_id = #{projectId}
+            </if>
+            <if test="authorId != null">
+                and author_id = #{authorId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into ams_book(name, publication_number, identity, rank, publish_house, type, word_count, publication_location, publication_time, remark, project_id, author_id)
+        values (#{name}, #{publicationNumber}, #{identity}, #{rank}, #{publishHouse}, #{type}, #{wordCount}, #{publicationLocation}, #{publicationTime}, #{remark}, #{projectId}, #{authorId})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into ams_book(name, publication_number, identity, rank, publish_house, type, word_count, publication_location, publication_time, remark, project_id, author_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.name}, #{entity.publicationNumber}, #{entity.identity}, #{entity.rank}, #{entity.publishHouse}, #{entity.type}, #{entity.wordCount}, #{entity.publicationLocation}, #{entity.publicationTime}, #{entity.remark}, #{entity.projectId}, #{entity.authorId})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into ams_book(name, publication_number, identity, rank, publish_house, type, word_count, publication_location, publication_time, remark, project_id, author_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.publicationNumber}, #{entity.identity}, #{entity.rank}, #{entity.publishHouse}, #{entity.type}, #{entity.wordCount}, #{entity.publicationLocation}, #{entity.publicationTime}, #{entity.remark}, #{entity.projectId}, #{entity.authorId})
+        </foreach>
+        on duplicate key update
+        name = values(name),
+        publication_number = values(publication_number),
+        identity = values(identity),
+        rank = values(rank),
+        publish_house = values(publish_house),
+        type = values(type),
+        word_count = values(word_count),
+        publication_location = values(publication_location),
+        publication_time = values(publication_time),
+        remark = values(remark),
+        project_id = values(project_id),
+        author_id = values(author_id)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update ams_book
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="publicationNumber != null and publicationNumber != ''">
+                publication_number = #{publicationNumber},
+            </if>
+            <if test="identity != null and identity != ''">
+                identity = #{identity},
+            </if>
+            <if test="rank != null and rank != ''">
+                rank = #{rank},
+            </if>
+            <if test="publishHouse != null and publishHouse != ''">
+                publish_house = #{publishHouse},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="wordCount != null and wordCount != ''">
+                word_count = #{wordCount},
+            </if>
+            <if test="publicationLocation != null and publicationLocation != ''">
+                publication_location = #{publicationLocation},
+            </if>
+            <if test="publicationTime != null">
+                publication_time = #{publicationTime},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId},
+            </if>
+            <if test="authorId != null">
+                author_id = #{authorId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from ams_book where id = #{id}
+    </delete>
+
+</mapper>
+
