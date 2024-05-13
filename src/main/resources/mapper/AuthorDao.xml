@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.lw.dao.AuthorDao">
+
+    <resultMap type="com.demo.lw.entity.Author" id="AuthorMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="sort" column="sort" jdbcType="VARCHAR"/>
+        <result property="identity" column="identity" jdbcType="VARCHAR"/>
+        <result property="correspondAuthor" column="correspond_author" jdbcType="INTEGER"/>
+        <result property="jointWork" column="joint_work" jdbcType="INTEGER"/>
+        <result property="unitName" column="unit_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AuthorMap">
+        select
+          id, name, sort, identity, correspond_author, joint_work, unit_name
+        from author
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AuthorMap">
+        select
+          id, name, sort, identity, correspond_author, joint_work, unit_name
+        from author
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="sort != null and sort != ''">
+                and sort = #{sort}
+            </if>
+            <if test="identity != null and identity != ''">
+                and identity = #{identity}
+            </if>
+            <if test="correspondAuthor != null">
+                and correspond_author = #{correspondAuthor}
+            </if>
+            <if test="jointWork != null">
+                and joint_work = #{jointWork}
+            </if>
+            <if test="unitName != null and unitName != ''">
+                and unit_name = #{unitName}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from author
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="sort != null and sort != ''">
+                and sort = #{sort}
+            </if>
+            <if test="identity != null and identity != ''">
+                and identity = #{identity}
+            </if>
+            <if test="correspondAuthor != null">
+                and correspond_author = #{correspondAuthor}
+            </if>
+            <if test="jointWork != null">
+                and joint_work = #{jointWork}
+            </if>
+            <if test="unitName != null and unitName != ''">
+                and unit_name = #{unitName}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into author(name, sort, identity, correspond_author, joint_work, unit_name)
+        values (#{name}, #{sort}, #{identity}, #{correspondAuthor}, #{jointWork}, #{unitName})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into author(name, sort, identity, correspond_author, joint_work, unit_name)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.name}, #{entity.sort}, #{entity.identity}, #{entity.correspondAuthor}, #{entity.jointWork}, #{entity.unitName})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into author(name, sort, identity, correspond_author, joint_work, unit_name)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.sort}, #{entity.identity}, #{entity.correspondAuthor}, #{entity.jointWork}, #{entity.unitName})
+        </foreach>
+        on duplicate key update
+        name = values(name),
+        sort = values(sort),
+        identity = values(identity),
+        correspond_author = values(correspond_author),
+        joint_work = values(joint_work),
+        unit_name = values(unit_name)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update author
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="sort != null and sort != ''">
+                sort = #{sort},
+            </if>
+            <if test="identity != null and identity != ''">
+                identity = #{identity},
+            </if>
+            <if test="correspondAuthor != null">
+                correspond_author = #{correspondAuthor},
+            </if>
+            <if test="jointWork != null">
+                joint_work = #{jointWork},
+            </if>
+            <if test="unitName != null and unitName != ''">
+                unit_name = #{unitName},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from author where id = #{id}
+    </delete>
+
+</mapper>
+
