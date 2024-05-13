@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * (AmsStuaward)实体类
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:13:23
  */
 public class AmsStuaward implements Serializable {

@@ -7,7 +7,7 @@ import org.springframework.data.domain.PageRequest;
 /**
  * (AmsBook)表服务接口
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 11:14:59
  */
 public interface AmsBookService {

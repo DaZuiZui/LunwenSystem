@@ -7,7 +7,7 @@ import org.springframework.data.domain.PageRequest;
 /**
  * (AmsMaterial)表服务接口
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 11:19:31
  */
 public interface AmsMaterialService {

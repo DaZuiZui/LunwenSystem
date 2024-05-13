@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * (PmsResearch)实体类
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:24:10
  */
 public class PmsResearch implements Serializable {

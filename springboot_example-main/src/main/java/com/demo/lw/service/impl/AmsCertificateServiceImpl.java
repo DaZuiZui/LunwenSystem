@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 /**
  * (AmsCertificate)表服务实现类
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 11:17:43
  */
 @Service("amsCertificateService")

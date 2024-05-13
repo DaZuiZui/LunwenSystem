@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 /**
  * (AuthorPmsRelation)表服务实现类
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:17:30
  */
 @Service("authorPmsRelationService")

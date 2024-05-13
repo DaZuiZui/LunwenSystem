@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * (AmsMaterial)实体类
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 11:19:31
  */
 public class AmsMaterial implements Serializable {

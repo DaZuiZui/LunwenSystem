@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * (AuthorPmsRelation)实体类
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:17:30
  */
 public class AuthorPmsRelation implements Serializable {

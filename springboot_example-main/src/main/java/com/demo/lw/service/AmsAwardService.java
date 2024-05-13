@@ -7,7 +7,7 @@ import org.springframework.data.domain.PageRequest;
 /**
  * (AmsAward)表服务接口
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 11:08:19
  */
 public interface AmsAwardService {

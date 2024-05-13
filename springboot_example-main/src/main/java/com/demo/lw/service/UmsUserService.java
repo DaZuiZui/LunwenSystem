@@ -7,7 +7,7 @@ import org.springframework.data.domain.PageRequest;
 /**
  * (UmsUser)表服务接口
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:50:41
  */
 public interface UmsUserService {

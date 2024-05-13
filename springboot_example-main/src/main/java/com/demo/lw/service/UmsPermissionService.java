@@ -7,7 +7,7 @@ import org.springframework.data.domain.PageRequest;
 /**
  * (UmsPermission)表服务接口
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:26:53
  */
 public interface UmsPermissionService {

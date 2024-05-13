@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 /**
  * (UmsMenu)表服务实现类
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:26:02
  */
 @Service("umsMenuService")

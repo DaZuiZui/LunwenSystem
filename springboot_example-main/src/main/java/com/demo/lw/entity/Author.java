@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * (Author)实体类
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:15:02
  */
 public class Author implements Serializable {

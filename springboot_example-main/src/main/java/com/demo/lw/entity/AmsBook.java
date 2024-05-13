@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * (AmsBook)实体类
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 11:14:59
  */
 public class AmsBook implements Serializable {

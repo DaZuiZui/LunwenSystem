@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * (AmsCertificate)实体类
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 11:17:43
  */
 public class AmsCertificate implements Serializable {

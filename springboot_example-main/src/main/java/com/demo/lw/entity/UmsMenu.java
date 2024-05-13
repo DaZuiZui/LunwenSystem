@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * (UmsMenu)实体类
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:26:02
  */
 public class UmsMenu implements Serializable {

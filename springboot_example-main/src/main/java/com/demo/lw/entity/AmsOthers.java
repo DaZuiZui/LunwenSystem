@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * (AmsOthers)实体类
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:05:51
  */
 public class AmsOthers implements Serializable {

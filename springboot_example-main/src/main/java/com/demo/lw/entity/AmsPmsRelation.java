@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * (AmsPmsRelation)实体类
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:09:31
  */
 public class AmsPmsRelation implements Serializable {

@@ -7,7 +7,7 @@ import org.springframework.data.domain.PageRequest;
 /**
  * (AmsCertificate)表服务接口
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 11:17:43
  */
 public interface AmsCertificateService {

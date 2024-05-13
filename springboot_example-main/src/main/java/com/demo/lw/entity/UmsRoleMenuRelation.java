@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * (UmsRoleMenuRelation)实体类
  *
- * @author makejava
+ * @author 1
  * @since 2024-05-13 13:29:48
  */
 public class UmsRoleMenuRelation implements Serializable {
